@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=<Application Name Goes here>
+Comment=
+Exec=  python /home/pi/Desktop/aht/AHT/main.py
+StartupNotify=false
+Terminal=true
+Hidden=false
