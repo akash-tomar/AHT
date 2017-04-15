@@ -1,7 +1,7 @@
 from gpiozero import MotionSensor
 from picamera import PiCamera
-import os,sys
-from PIL import Image
+# import os,sys
+# from PIL import Image
 import requests
 
 camera = PiCamera()
@@ -24,9 +24,9 @@ while True:
 		count+=1
 		name="/home/pi/Desktop/image"+str(count)+".jpg"
 		camera.capture(name)
-		jpgfile = Image.open(name)
-		print jpgfile
-		sendRequest(jpgfile)
+		# jpgfile = Image.open(name)
+		# print jpgfile
+		sendRequest(name)
 		time.sleep(3)
 	else:
 		print "no motion"
