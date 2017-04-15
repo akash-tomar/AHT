@@ -1,7 +1,7 @@
 from gpiozero import MotionSensor
 from picamera import PiCamera
 import os,sys
-import Image
+from PIL import Image
 import requests
 
 camera = PiCamera()
