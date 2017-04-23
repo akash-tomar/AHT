@@ -1,4 +1,5 @@
 import requests
+
 def sendRequest():
 	url = 'https://antihta.herokuapp.com/kill/?id=2507'
 	params = {"hub.verify_token":"AntiHomeTheft","hub.challenge":"42"}

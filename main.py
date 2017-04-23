@@ -1,7 +1,7 @@
 from gpiozero import MotionSensor
 from picamera import PiCamera
 # import os,sys
-# from PIL import Image
+import threading
 import requests
 import json
 camera = PiCamera()
@@ -26,18 +26,20 @@ def shutDown():
     print output
 
 def getRequest():
-	url = 'https://antihta.herokuapp.com/kill/?id=2507'
-	params = {"hub.verify_token":"AntiHomeTheft","hub.challenge":"42"}
-	# url = 'http://127.0.0.1:8000/kill/?id=2507'
-	# url="http://127.0.0.1:8000/getResponse/"
-	# files = {'media': open(image, 'rb')}
-	r = requests.get(url)
-	print "pi shut down request"
-	kill = json.loads(r._content)
-	if kill:
-		#shut down pi
-		shutDown()
-
+	while True:
+		url = 'https://antihta.herokuapp.com/kill/?id=2507'
+		params = {"hub.verify_token":"AntiHomeTheft","hub.challenge":"42"}
+		# url = 'http://127.0.0.1:8000/kill/?id=2507'
+		# url="http://127.0.0.1:8000/getResponse/"
+		# files = {'media': open(image, 'rb')}
+		r = requests.get(url)
+		print "pi shut down request"
+		kill = json.loads(r._content)
+		if kill:
+			#shut down pi
+			shutDown()
+		time.sleep(5)
+thread = threading.Thread(target=getRequest).start()
 
 while True:
 	if pir.motion_detected:
